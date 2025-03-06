@@ -11,12 +11,17 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.text.KeyboardOptions
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Bedtime
 import androidx.compose.material3.Button
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
+import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -26,14 +31,23 @@ import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.input.KeyboardCapitalization
+import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import br.senai.sp.jandira.bmi.R
 import org.w3c.dom.Text
 
+
+
 @Composable
 fun HomeScreen (modifier: Modifier = Modifier) {
+
+    var nameState = remember {
+        mutableStateOf(" ")
+    }
+
     Box(
         modifier = Modifier
             .fillMaxSize()
@@ -109,16 +123,38 @@ fun HomeScreen (modifier: Modifier = Modifier) {
 
                         )
                         TextField(
-                            value = "",
-                            onValueChange = {},
+                            value = nameState.value,
+                            onValueChange = {
+                                nameState.value = it
+                            },
                             modifier = Modifier
                                 .fillMaxWidth()
-                                .padding(top = 10.dp)
+                                .padding(top = 10.dp),
+                            keyboardOptions = KeyboardOptions(
+                                keyboardType = KeyboardType.Text,
+                                capitalization = KeyboardCapitalization.Sentences
+                            ),
+                            leadingIcon = {
+                                Icon(
+                                    imageVector = Icons.Default.Bedtime,
+                                    contentDescription = "",
+                                    tint = Color(0xFF9C27B0)
+                                )
+                            },
+                            trailingIcon  = {
+                                Icon(
+                                    imageVector = Icons.Default.Bedtime,
+                                    contentDescription = "",
+                                    tint = Color(0xFF9C27B0)
+                                )
+                            }
                         )
                     }
                     Button(
                         onClick = {},
-                        shape = RoundedCornerShape(8.dp)
+                        shape = RoundedCornerShape(8.dp),
+
+
                     ) {
                         Text(
                             text = stringResource(
