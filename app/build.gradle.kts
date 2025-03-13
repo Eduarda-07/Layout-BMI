@@ -57,5 +57,9 @@ dependencies {
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
 
+    //import de icones
     implementation(libs.androidx.material.icons.extended.android)
+
+    //import da navegação
+    implementation(libs.androidx.navigation.compose)
 }
