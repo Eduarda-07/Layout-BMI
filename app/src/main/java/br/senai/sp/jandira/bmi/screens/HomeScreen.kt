@@ -13,7 +13,9 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Bedtime
+import androidx.compose.material.icons.filled.BorderColor
 import androidx.compose.material3.Button
+import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.Icon
@@ -130,18 +132,11 @@ fun HomeScreen(navegacao: NavHostController) {
                                 keyboardType = KeyboardType.Text,
                                 capitalization = KeyboardCapitalization.Sentences
                             ),
-                            leadingIcon = {
+                            trailingIcon = {
                                 Icon(
-                                    imageVector = Icons.Default.Bedtime,
+                                    imageVector = Icons.Default.BorderColor,
                                     contentDescription = "",
-                                    tint = Color(0xFF9C27B0)
-                                )
-                            },
-                            trailingIcon  = {
-                                Icon(
-                                    imageVector = Icons.Default.Bedtime,
-                                    contentDescription = "",
-                                    tint = Color(0xFF9C27B0)
+                                    tint = Color(0xFF673AB7)
                                 )
                             }
                         )
@@ -151,13 +146,16 @@ fun HomeScreen(navegacao: NavHostController) {
                             navegacao.navigate("dados")
                        },
                         shape = RoundedCornerShape(8.dp),
-
+                        colors = ButtonDefaults.buttonColors(
+                            containerColor = Color(0xFF673AB7)
+                        )
 
                     ) {
                         Text(
                             text = stringResource(
                                 R.string.next
                             )
+
                         )
                     }
                 }
@@ -168,5 +166,5 @@ fun HomeScreen(navegacao: NavHostController) {
  @Preview(showSystemUi = true)
  @Composable
 private fun HomeScreenPreview(){
-    //HomeScreen(navegacao)
+//    HomeScreen(navegacao)
 }

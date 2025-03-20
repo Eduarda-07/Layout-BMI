@@ -47,7 +47,13 @@ import br.senai.sp.jandira.bmi.R
 fun UserDataScreen (modifier: Modifier = Modifier) {
 
     var nameState = remember {
-        mutableStateOf(" ")
+        mutableStateOf("Age")
+    }
+    var nameState2 = remember {
+        mutableStateOf("Weight")
+    }
+    var nameState3 = remember {
+        mutableStateOf("Height")
     }
 
     Box(
@@ -105,7 +111,7 @@ fun UserDataScreen (modifier: Modifier = Modifier) {
                         Column (
                             modifier = Modifier
                                 .weight(1f),
-
+                            horizontalAlignment = Alignment.CenterHorizontally
 
                         ){
                             Image(
@@ -123,8 +129,6 @@ fun UserDataScreen (modifier: Modifier = Modifier) {
                             Button(
                                 onClick = {},
                                 shape = RoundedCornerShape(100.dp),
-                                modifier = Modifier
-                                    ,
                                 colors = ButtonDefaults.buttonColors(
                                     containerColor = Color(0xFF9C27B0)
                                 )
@@ -141,7 +145,8 @@ fun UserDataScreen (modifier: Modifier = Modifier) {
                         }
                         Column (
                             modifier = Modifier
-                                .weight(1f)
+                                .weight(1f),
+                            horizontalAlignment = Alignment.CenterHorizontally
                         ){
                             Image(
                                 painter = painterResource(
@@ -158,8 +163,6 @@ fun UserDataScreen (modifier: Modifier = Modifier) {
                             Button(
                                 onClick = {},
                                 shape = RoundedCornerShape(100.dp),
-                                modifier = Modifier
-                                    ,
                                 colors = ButtonDefaults.buttonColors(
                                     containerColor = Color(0xFFD53368)
                                 )
@@ -181,7 +184,8 @@ fun UserDataScreen (modifier: Modifier = Modifier) {
                                 nameState.value = it
                             },
                             modifier = Modifier
-                                .fillMaxWidth(),
+                                .fillMaxWidth()
+                                .padding(vertical = 15.dp),
                             keyboardOptions = KeyboardOptions(
                                 keyboardType = KeyboardType.Number
                             ),
@@ -191,16 +195,18 @@ fun UserDataScreen (modifier: Modifier = Modifier) {
                                     contentDescription = "",
                                     tint = Color(0xFF673AB7)
                                 )
-                            }
+                            },
+                            shape = RoundedCornerShape(10.dp)
 
                         )
                         OutlinedTextField(
-                            value = nameState.value,
+                            value = nameState2.value,
                             onValueChange = {
-                                nameState.value = it
+                                nameState2.value = it
                             },
                             modifier = Modifier
-                                .fillMaxWidth(),
+                                .fillMaxWidth()
+                                .padding(vertical = 15.dp),
                             keyboardOptions = KeyboardOptions(
                                 keyboardType = KeyboardType.Number
                             ),
@@ -210,16 +216,18 @@ fun UserDataScreen (modifier: Modifier = Modifier) {
                                     contentDescription = "",
                                     tint = Color(0xFF673AB7)
                                 )
-                            }
+                            },
+                            shape = RoundedCornerShape(10.dp)
 
                         )
                         OutlinedTextField(
-                            value = nameState.value,
+                            value = nameState3.value,
                             onValueChange = {
-                                nameState.value = it
+                                nameState3.value = it
                             },
                             modifier = Modifier
-                                .fillMaxWidth(),
+                                .fillMaxWidth()
+                                .padding(vertical = 15.dp),
                             keyboardOptions = KeyboardOptions(
                                 keyboardType = KeyboardType.Number
                             ),
@@ -229,7 +237,8 @@ fun UserDataScreen (modifier: Modifier = Modifier) {
                                     contentDescription = "",
                                     tint = Color(0xFF673AB7)
                                 )
-                            }
+                            },
+                            shape = RoundedCornerShape(10.dp)
 
 
                         )
