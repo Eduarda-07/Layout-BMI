@@ -12,6 +12,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Button
@@ -127,6 +128,7 @@ fun ResultScreen(modifier: Modifier = Modifier){
                            .background(
                                color = Color(0xFFEEDCFA)
                            )
+                           .padding(6.dp)
                    ) {
                        Column(
                            modifier = Modifier
@@ -137,7 +139,7 @@ fun ResultScreen(modifier: Modifier = Modifier){
                                text = stringResource(
                                    R.string.age
                                ),
-                               color = Color.Black,
+                               color = Color(0xFF4F4F4F),
                                fontSize = 22.sp
                            )
                            Text(
@@ -151,10 +153,9 @@ fun ResultScreen(modifier: Modifier = Modifier){
 
                        }
 
-                       HorizontalDivider(
+                       VerticalDivider(
                            modifier = Modifier
-                               .fillMaxHeight()
-                               .width(1.dp),
+                               .height(60.dp),
                            color = Color.Gray
                        )
 
@@ -167,7 +168,7 @@ fun ResultScreen(modifier: Modifier = Modifier){
                                text = stringResource(
                                    R.string.weight
                                ),
-                               color = Color.Black,
+                               color = Color(0xFF4F4F4F),
                                fontSize = 22.sp
                            )
                            Text(
@@ -179,6 +180,11 @@ fun ResultScreen(modifier: Modifier = Modifier){
                                fontWeight = FontWeight.W500
                            )
                        }
+                       VerticalDivider(
+                           modifier = Modifier
+                               .height(60.dp),
+                           color = Color.Gray
+                       )
                        Column(
                            modifier = Modifier
                                .weight(1f),
@@ -188,7 +194,7 @@ fun ResultScreen(modifier: Modifier = Modifier){
                                text = stringResource(
                                    R.string.high
                                ),
-                               color = Color.Black,
+                               color = Color(0xFF4F4F4F),
                                fontSize = 22.sp
                            )
                            Text(
@@ -218,7 +224,8 @@ fun ResultScreen(modifier: Modifier = Modifier){
                     Text(
                         text = stringResource(
                             R.string.new_calc
-                        )
+                        ),
+                        fontSize = 25.sp
                     )
 
                 }
