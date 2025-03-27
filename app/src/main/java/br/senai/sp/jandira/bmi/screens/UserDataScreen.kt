@@ -1,5 +1,6 @@
 package br.senai.sp.jandira.bmi.screens
 
+import android.content.Context
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
@@ -33,28 +34,40 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardCapitalization
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavHostController
 import br.senai.sp.jandira.bmi.R
 
 @Composable
-fun UserDataScreen (modifier: Modifier = Modifier) {
+fun UserDataScreen (navegacao: NavHostController?){
 
-    var nameState = remember {
-        mutableStateOf("Age")
+    var ageState = remember {
+        mutableStateOf("")
     }
-    var nameState2 = remember {
-        mutableStateOf("Weight")
+    var weightState = remember {
+        mutableStateOf("")
     }
-    var nameState3 = remember {
-        mutableStateOf("Height")
+    var heightState = remember {
+        mutableStateOf("")
     }
+
+    val contexto =  LocalContext.current
+    val userFile = contexto
+        .getSharedPreferences("userFile", Context.MODE_PRIVATE)
+
+    val userName = userFile.getString("user_name", "User name not found!")
+
+
+    val editor = userFile.edit()
 
     Box(
         modifier = Modifier
@@ -73,12 +86,12 @@ fun UserDataScreen (modifier: Modifier = Modifier) {
         Column (
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(top= 70.dp,start = 20.dp),
+                .padding(top= 70.dp,start = 20.dp, end = 20.dp),
         ){
             Text(
                 text = stringResource(
                     R.string.hello
-                ),
+                ) + ", $userName!",
                 color = Color.White,
                 fontSize = 32.sp,
                 fontWeight = FontWeight.Bold
@@ -138,7 +151,9 @@ fun UserDataScreen (modifier: Modifier = Modifier) {
                                 Text(
                                     text = stringResource(
                                         R.string.male
-                                    )
+
+                                    ),
+                                    fontSize = 16.sp
                                 )
 
                             }
@@ -170,8 +185,9 @@ fun UserDataScreen (modifier: Modifier = Modifier) {
 
                                 Text(
                                     text = stringResource(
-                                        R.string.female
-                                    )
+                                         R.string.female
+                                    ),
+                                    fontSize = 16.sp
                                 )
 
                             }
@@ -179,15 +195,16 @@ fun UserDataScreen (modifier: Modifier = Modifier) {
                     }
                     Column {
                         OutlinedTextField(
-                            value = nameState.value,
+                            value = ageState.value,
                             onValueChange = {
-                                nameState.value = it
+                                ageState.value = it
                             },
                             modifier = Modifier
                                 .fillMaxWidth()
                                 .padding(vertical = 15.dp),
                             keyboardOptions = KeyboardOptions(
-                                keyboardType = KeyboardType.Number
+                                keyboardType = KeyboardType.Number,
+                                imeAction = ImeAction.Next
                             ),
                             leadingIcon = {
                                 Icon(
@@ -196,19 +213,21 @@ fun UserDataScreen (modifier: Modifier = Modifier) {
                                     tint = Color(0xFF673AB7)
                                 )
                             },
-                            shape = RoundedCornerShape(10.dp)
+                            shape = RoundedCornerShape(10.dp),
+                            label = { Text(text = stringResource(R.string.age) ) }
 
                         )
                         OutlinedTextField(
-                            value = nameState2.value,
+                            value = weightState.value,
                             onValueChange = {
-                                nameState2.value = it
+                                weightState.value = it
                             },
                             modifier = Modifier
                                 .fillMaxWidth()
                                 .padding(vertical = 15.dp),
                             keyboardOptions = KeyboardOptions(
-                                keyboardType = KeyboardType.Number
+                                keyboardType = KeyboardType.Number,
+                                imeAction = ImeAction.Next
                             ),
                             leadingIcon = {
                                 Icon(
@@ -217,19 +236,21 @@ fun UserDataScreen (modifier: Modifier = Modifier) {
                                     tint = Color(0xFF673AB7)
                                 )
                             },
-                            shape = RoundedCornerShape(10.dp)
+                            shape = RoundedCornerShape(10.dp),
+                            label = { Text(text = stringResource(R.string.weight) ) }
 
                         )
                         OutlinedTextField(
-                            value = nameState3.value,
+                            value = heightState.value,
                             onValueChange = {
-                                nameState3.value = it
+                                heightState.value = it
                             },
                             modifier = Modifier
                                 .fillMaxWidth()
                                 .padding(vertical = 15.dp),
                             keyboardOptions = KeyboardOptions(
-                                keyboardType = KeyboardType.Number
+                                keyboardType = KeyboardType.Decimal,
+                                imeAction = ImeAction.Done
                             ),
                             leadingIcon = {
                                 Icon(
@@ -238,17 +259,24 @@ fun UserDataScreen (modifier: Modifier = Modifier) {
                                     tint = Color(0xFF673AB7)
                                 )
                             },
-                            shape = RoundedCornerShape(10.dp)
+                            shape = RoundedCornerShape(10.dp),
+                            label = { Text(text = stringResource(R.string.height) ) }
 
 
                         )
                     }
                     Button(
-                        onClick = {},
+                        onClick = {
+                            editor.putInt("age", ageState.value.toInt())
+                            editor.putInt("weight", weightState.value.toInt())
+                            editor.putFloat("height", heightState.value.toFloat())
+                            editor.apply()
+
+                            navegacao!!.navigate("resultado")
+                        },
                         shape = RoundedCornerShape(10.dp),
                         modifier = Modifier
                             .fillMaxWidth()
-
                             .height(50.dp),
                         colors = ButtonDefaults.buttonColors(
                             containerColor = Color(0xFF673AB7)
@@ -258,7 +286,9 @@ fun UserDataScreen (modifier: Modifier = Modifier) {
                         Text(
                             text = stringResource(
                                 R.string.calculate
-                            )
+                            ),
+                            fontSize = (25.sp)
+
                         )
 
                     }
@@ -273,5 +303,5 @@ fun UserDataScreen (modifier: Modifier = Modifier) {
 @Preview(showSystemUi = true)
 @Composable
 private fun UserDataScreenPreview(){
-    UserDataScreen()
+  UserDataScreen(navegacao = null)
 }

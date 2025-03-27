@@ -1,5 +1,6 @@
 package br.senai.sp.jandira.bmi.screens
 
+import android.content.Context
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
@@ -30,6 +31,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Shape
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
@@ -40,7 +42,16 @@ import br.senai.sp.jandira.bmi.R
 
 @Composable
 
-fun ResultScreen(modifier: Modifier = Modifier){
+fun ResultScreen(navegacao: NavHostController?){
+    val contexto =  LocalContext.current
+    val userFile = contexto
+        .getSharedPreferences("userFile", Context.MODE_PRIVATE)
+    
+    val userAge = userFile.getInt("age", 0)
+    val userWeight = userFile.getInt("weight", 0)
+    val userHeight= userFile.getFloat("height", 0.0F)
+
+
     Box(
         modifier = Modifier
             .fillMaxSize()
@@ -143,9 +154,7 @@ fun ResultScreen(modifier: Modifier = Modifier){
                                fontSize = 22.sp
                            )
                            Text(
-                               text = stringResource(
-                                   R.string.age_value
-                               ),
+                               text = "$userAge",
                                color = Color.Black,
                                fontSize = 25.sp,
                                fontWeight = FontWeight.W500
@@ -172,9 +181,7 @@ fun ResultScreen(modifier: Modifier = Modifier){
                                fontSize = 22.sp
                            )
                            Text(
-                               text = stringResource(
-                                   R.string.weight_value
-                               ),
+                               text = "$userWeight",
                                color = Color.Black,
                                fontSize = 25.sp,
                                fontWeight = FontWeight.W500
@@ -192,15 +199,13 @@ fun ResultScreen(modifier: Modifier = Modifier){
                        ) {
                            Text(
                                text = stringResource(
-                                   R.string.high
+                                   R.string.height
                                ),
                                color = Color(0xFF4F4F4F),
                                fontSize = 22.sp
                            )
                            Text(
-                               text = stringResource(
-                                   R.string.high_value
-                               ),
+                               text = "$userHeight",
                                color = Color.Black,
                                fontSize = 25.sp,
                                fontWeight = FontWeight.W500
@@ -210,11 +215,13 @@ fun ResultScreen(modifier: Modifier = Modifier){
                    }
                }
                 Button(
-                    onClick = {},
+                    onClick = {
+                        navegacao!!.navigate("dados")
+
+                    },
                     shape = RoundedCornerShape(10.dp),
                     modifier = Modifier
                         .fillMaxWidth()
-
                         .height(50.dp),
                     colors = ButtonDefaults.buttonColors(
                         containerColor = Color(0xFF673AB7)
@@ -239,5 +246,5 @@ fun ResultScreen(modifier: Modifier = Modifier){
 @Preview(showSystemUi = true)
 @Composable
 private fun ResultScreenPreview(){
-    ResultScreen()
+    ResultScreen(navegacao = null)
 }
