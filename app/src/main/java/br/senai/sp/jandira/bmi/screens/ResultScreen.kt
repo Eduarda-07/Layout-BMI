@@ -39,6 +39,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
 import br.senai.sp.jandira.bmi.R
+import java.util.Locale
 
 @Composable
 
@@ -49,6 +50,7 @@ fun ResultScreen(navegacao: NavHostController?){
     
     val userAge = userFile.getInt("age", 0)
     val userWeight = userFile.getInt("weight", 0)
+    //usar o F para dizer que é float
     val userHeight= userFile.getFloat("height", 0.0F)
 
 
@@ -205,7 +207,7 @@ fun ResultScreen(navegacao: NavHostController?){
                                fontSize = 22.sp
                            )
                            Text(
-                               text = "$userHeight",
+                               text = String.format(Locale.getDefault(), "%.2f", userHeight),
                                color = Color.Black,
                                fontSize = 25.sp,
                                fontWeight = FontWeight.W500
@@ -227,7 +229,6 @@ fun ResultScreen(navegacao: NavHostController?){
                         containerColor = Color(0xFF673AB7)
                     )
                 ){
-
                     Text(
                         text = stringResource(
                             R.string.new_calc
