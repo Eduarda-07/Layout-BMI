@@ -22,6 +22,6 @@
     <string name="overweight1">Atenção,você está com obesidade nível I</string>
     <string name="overweight2">Atenção, você está com obesidade nível II</string>
     <string name="overweight3">Atenção, você está com obesidade nível III</string>
-
+    <string name="under_weight"> Abaixo do peso</string>
 
 </resources>

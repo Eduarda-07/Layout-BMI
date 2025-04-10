@@ -22,5 +22,6 @@
     <string name="overweight1"> You have Class I Obesity!</string>
     <string name="overweight2">  You have Class II Obesity!</string>
     <string name="overweight3"> You have Class III Obesity!</string>
+    <string name="under_weight"> Under weight</string>
 
 </resources>
