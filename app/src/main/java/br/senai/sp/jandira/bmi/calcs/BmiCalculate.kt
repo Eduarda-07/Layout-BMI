@@ -36,20 +36,20 @@ fun bmiCalculate(weight: Int, height: Double): Bmi{
             )
         bmiResult >= 30.0 && bmiResult < 35->
             return Bmi(
-                bmi = Pair(stringResource(R.string.overweight1), bmiResult),
+                bmi = Pair(stringResource(R.string.obesity1), bmiResult),
                 bmiColor = colorResource(R.color.light_orange),
                 bmiStatus = BmiStatus.OBESITY_1
             )
         bmiResult >= 35.0 && bmiResult < 40.0->
             return Bmi(
-                bmi = Pair(stringResource(R.string.overweight2), bmiResult),
+                bmi = Pair(stringResource(R.string.obesity2), bmiResult),
                 bmiColor = colorResource(R.color.dark_orange),
                 bmiStatus = BmiStatus.OBESITY_2
             )
 
         else ->
             return Bmi(
-                bmi = Pair(stringResource(R.string.overweight3), bmiResult),
+                bmi = Pair(stringResource(R.string.obesity3), bmiResult),
                 bmiColor = colorResource(R.color.red),
                 bmiStatus = BmiStatus.OBESITY_3
             )

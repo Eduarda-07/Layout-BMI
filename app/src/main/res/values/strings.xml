@@ -19,9 +19,14 @@
     <string name="underweight"> You are below your ideal weight!</string>
     <string name="normal">You have normal body weight!</string>
     <string name="overweight">You are slightly overweight!</string>
-    <string name="overweight1"> You have Class I Obesity!</string>
-    <string name="overweight2">  You have Class II Obesity!</string>
-    <string name="overweight3"> You have Class III Obesity!</string>
-    <string name="under_weight"> Under weight</string>
+    <string name="obesity1"> You have Class I Obesity!</string>
+    <string name="obesity2">  You have Class II Obesity!</string>
+    <string name="obesity3"> You have Class III Obesity!</string>
+    <string name="under_weight"> Underweight</string>
+    <string name="normal_weight"> Normal</string>
+    <string name="over_weight">  Overweight </string>
+    <string name="obesity_1"> Obesity claas I</string>
+    <string name="obesity_2"> Obesity class II</string>
+    <string name="obesity_3"> Obesity class III </string>
 
 </resources>

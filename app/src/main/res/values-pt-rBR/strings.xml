@@ -19,9 +19,14 @@
     <string name="underweight"> Atenção, você esta abaixo do peso ideal!</string>
     <string name="normal">Parabéns, seu peso está normal!</string>
     <string name="overweight">Atenção, você está levemente acima do peso</string>
-    <string name="overweight1">Atenção,você está com obesidade nível I</string>
-    <string name="overweight2">Atenção, você está com obesidade nível II</string>
-    <string name="overweight3">Atenção, você está com obesidade nível III</string>
+    <string name="obesity1">Atenção,você está com obesidade nível I</string>
+    <string name="obesity2">Atenção, você está com obesidade nível II</string>
+    <string name="obesity3">Atenção, você está com obesidade nível III</string>
     <string name="under_weight"> Abaixo do peso</string>
+    <string name="normal_weight"> Peso ideal </string>
+    <string name="over_weight">  Levemente acima do peso</string>
+    <string name="obesity_1"> Obesidade nível I</string>
+    <string name="obesity_2"> Obesidade nível II</string>
+    <string name="obesity_3"> Obesity nível III </string>
 
 </resources>

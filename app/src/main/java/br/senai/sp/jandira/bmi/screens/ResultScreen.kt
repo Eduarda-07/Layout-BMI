@@ -38,13 +38,16 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
 import androidx.navigation.NavHostController
 import br.senai.sp.jandira.bmi.R
 import br.senai.sp.jandira.bmi.calcs.bmiCalculate
 import br.senai.sp.jandira.bmi.model.Bmi
 import br.senai.sp.jandira.bmi.model.BmiStatus
 import br.senai.sp.jandira.bmi.screens.components.BmiLevel
-import br.senai.sp.jandira.bmi.utils.convertNumberToLocale
+
+import br.senai.sp.jandira.bmi.utils.isFilled
+import br.senai.sp.jandira.bmi.utils.numberFormat
 import java.util.Locale
 
 @Composable
@@ -230,42 +233,79 @@ fun ResultScreen(navegacao: NavHostController?){
                         .fillMaxWidth()
                         .height(250.dp)
                 ){
+//                    BmiLevel(
+//                        bulletColor = colorResource(R.color.light_blue),
+//                        leftText = stringResource(R.string.under_weight),
+//                        rightText = "<${convertNumberToLocale(18.5)}",
+//                        isFilled = if(bmi.bmiStatus == BmiStatus.UNDER_WEIGHT) true else false
+//                    )
+//                    BmiLevel(
+//                        bulletColor = colorResource(R.color.light_green),
+//                        leftText = stringResource(R.string.under_weight),
+//                        rightText = "${convertNumberToLocale(18.6 -24.9)}",
+//                        isFilled = if(bmi.bmiStatus == BmiStatus.NORMAL) true else false
+//                    )
+//                    BmiLevel(
+//                        bulletColor = colorResource(R.color.yellow),
+//                        leftText = stringResource(R.string.under_weight),
+//                        rightText = "<${convertNumberToLocale(18.5)}",
+//                        isFilled = if(bmi.bmiStatus == BmiStatus.OVER_WEIGHT) true else false
+//                    )
+//                    BmiLevel(
+//                        bulletColor = colorResource(R.color.light_orange),
+//                        leftText = stringResource(R.string.under_weight),
+//                        rightText = "<${convertNumberToLocale(18.5)}",
+//                        isFilled = if(bmi.bmiStatus == BmiStatus.OBESITY_1) true else false
+//                    )
+//                    BmiLevel(
+//                        bulletColor = colorResource(R.color.dark_orange),
+//                        leftText = stringResource(R.string.under_weight),
+//                        rightText = "<${convertNumberToLocale(18.5)}",
+//                        isFilled = if(bmi.bmiStatus == BmiStatus.OBESITY_2) true else false
+//                    )
+//                    BmiLevel(
+//                        bulletColor = colorResource(R.color.red),
+//                        leftText = stringResource(R.string.under_weight),
+//                        rightText = "<${convertNumberToLocale(18.5)}",
+//                        isFilled = if(bmi.bmiStatus == BmiStatus.OBESITY_3) true else false
+//                    )
                     BmiLevel(
                         bulletColor = colorResource(R.color.light_blue),
                         leftText = stringResource(R.string.under_weight),
-                        rightText = "<${convertNumberToLocale(18.5)}",
-                        isFilled = if(bmi.bmiStatus == BmiStatus.UNDER_WEIGHT) true else false
+                        rightText = "< ${numberFormat(18.5)}",
+                        isFilled = isFilled(bmi.bmiStatus, BmiStatus.UNDER_WEIGHT)
                     )
                     BmiLevel(
                         bulletColor = colorResource(R.color.light_green),
-                        leftText = stringResource(R.string.under_weight),
-                        rightText = "${convertNumberToLocale(18.6 -24.9)}",
-                        isFilled = if(bmi.bmiStatus == BmiStatus.NORMAL) true else false
+                        leftText = stringResource(R.string.normal_weight),
+                        rightText = "${numberFormat(18.6)} - ${numberFormat(24.9)}",
+                        isFilled = isFilled(bmi.bmiStatus, BmiStatus.NORMAL)
                     )
                     BmiLevel(
                         bulletColor = colorResource(R.color.yellow),
-                        leftText = stringResource(R.string.under_weight),
-                        rightText = "<${convertNumberToLocale(18.5)}",
-                        isFilled = if(bmi.bmiStatus == BmiStatus.OVER_WEIGHT) true else false
+                        leftText = stringResource(R.string.over_weight),
+                        rightText = "${numberFormat(25.0)} - ${numberFormat(29.9)}",
+                        isFilled = isFilled(bmi.bmiStatus, BmiStatus.OVER_WEIGHT)
                     )
                     BmiLevel(
                         bulletColor = colorResource(R.color.light_orange),
-                        leftText = stringResource(R.string.under_weight),
-                        rightText = "<${convertNumberToLocale(18.5)}",
-                        isFilled = if(bmi.bmiStatus == BmiStatus.OBESITY_1) true else false
+                        leftText = stringResource(R.string.obesity_1),
+                        rightText = "${numberFormat(30.0)} - ${numberFormat(34.9)}",
+                        isFilled = isFilled(bmi.bmiStatus, BmiStatus.OBESITY_1)
                     )
                     BmiLevel(
                         bulletColor = colorResource(R.color.dark_orange),
-                        leftText = stringResource(R.string.under_weight),
-                        rightText = "<${convertNumberToLocale(18.5)}",
-                        isFilled = if(bmi.bmiStatus == BmiStatus.OBESITY_2) true else false
+                        leftText = stringResource(R.string.obesity_2),
+                        rightText =  "${numberFormat(35.0)} - ${numberFormat(39.9)}",
+                        isFilled = isFilled(bmi.bmiStatus, BmiStatus.OBESITY_2)
                     )
                     BmiLevel(
-                        bulletColor = colorResource(R.color.red),
-                        leftText = stringResource(R.string.under_weight),
-                        rightText = "<${convertNumberToLocale(18.5)}",
-                        isFilled = if(bmi.bmiStatus == BmiStatus.OBESITY_3) true else false
+                        bulletColor =  colorResource(R.color.red),
+                        leftText =  stringResource(R.string.obesity_3),
+                        rightText = "> ${numberFormat(39.9)}",
+                        isFilled = isFilled(bmi.bmiStatus, BmiStatus.OBESITY_3)
                     )
+
                 }
                 Button(
                     onClick = {
@@ -298,5 +338,5 @@ fun ResultScreen(navegacao: NavHostController?){
 @Preview(showSystemUi = true)
 @Composable
 private fun ResultScreenPreview(){
-    ResultScreen(navegacao = null)
+    ResultScreen(null)
 }
